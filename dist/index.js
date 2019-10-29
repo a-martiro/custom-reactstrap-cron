@@ -4,26 +4,27 @@ import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConst
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from 'react';
-import cronstrue from 'cronstrue';
+import cronstrue from 'cronstrue/i18n';
 import Once from './once';
 import Minutes from './minutes';
 import Daily from './daily';
 import Hourly from './hourly';
 import Weekly from './weekly';
 import Monthly from './monthly';
-import Yearly from './yearly'; // import './cron-builder.css';
+import Yearly from './yearly';
+import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap'; // import './cron-builder.css';
 
-var defaultTabs = ['Once', 'Minutes', 'Hourly', 'Daily', 'Weekly', 'Monthly']; //,'Yearly'
+var defaultTabs = ['Una vez', 'Minutos', 'Cada hora', 'Diario', 'Semanal', 'Mensual']; //,'Yearly'
 
 var date = new Date();
 var defaultTabsVal = {
-  Once: [//Now
+  'Una vez': [//Now
   '0', '0', (date.getHours() < 23 ? date.getHours() + 1 : 23).toString(), date.getDate().toString(), (date.getMonth() + 1).toString(), '?', date.getFullYear().toString()],
-  Minutes: ['0', '0/1', '*', '*', '*', '?', '*'],
-  Hourly: ['0', '0', '0/1', '*', '*', '?', '*'],
-  Daily: ['0', '0', '00', '1/1', '*', '?', '*'],
-  Weekly: ['0', '0', '00', '?', '*', '*', '*'],
-  Monthly: ['0', '0', '00', '1', '1/1', '?', '*']
+  'Minutos': ['0', '0/1', '*', '*', '*', '?', '*'],
+  'Cada hora': ['0', '0', '0/1', '*', '*', '?', '*'],
+  'Diario': ['0', '0', '00', '1/1', '*', '?', '*'],
+  'Semanal': ['0', '0', '00', '?', '*', '*', '*'],
+  'Mensual': ['0', '0', '00', '1', '1/1', '?', '*']
 };
 var tabs = [];
 
@@ -93,10 +94,12 @@ function (_Component) {
       var _this2 = this;
 
       return tabs.map(function (d) {
-        return React.createElement("li", {
-          className: _this2.state.selectedTab === d ? 'active' : ''
-        }, React.createElement("a", {
-          onClick: _this2.tabChanged.bind(_this2, d)
+        return React.createElement(NavItem, {
+          key: "navItem-".concat(d)
+        }, React.createElement(NavLink, {
+          key: "navLink-".concat(d),
+          onClick: _this2.tabChanged.bind(_this2, d),
+          active: _this2.state.selectedTab === d
         }, d));
       });
     }
@@ -128,7 +131,9 @@ function (_Component) {
   }, {
     key: "getVal",
     value: function getVal() {
-      var val = cronstrue.toString(this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ','));
+      var val = cronstrue.toString(this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ','), {
+        locale: "es"
+      });
 
       if (val.search('undefined') === -1) {
         return val;
@@ -142,64 +147,64 @@ function (_Component) {
       switch (tab) {
         case defaultTabs[0]:
           return React.createElement(Once, {
+            key: "nav-".concat(tab),
             value: this.state.value,
             hours: this.props.hours,
             minutes: this.props.minutes,
             onChange: this.onValueChange.bind(this)
           });
-          break;
 
         case defaultTabs[1]:
           return React.createElement(Minutes, {
+            key: "nav-".concat(tab),
             value: this.state.value,
             onChange: this.onValueChange.bind(this)
           });
-          break;
 
         case defaultTabs[2]:
           return React.createElement(Hourly, {
+            key: "nav-".concat(tab),
             value: this.state.value,
             hours: this.props.hours,
             minutes: this.props.minutes,
             onChange: this.onValueChange.bind(this)
           });
-          break;
 
         case defaultTabs[3]:
           return React.createElement(Daily, {
+            key: "nav-".concat(tab),
             value: this.state.value,
             hours: this.props.hours,
             minutes: this.props.minutes,
             onChange: this.onValueChange.bind(this)
           });
-          break;
 
         case defaultTabs[4]:
           return React.createElement(Weekly, {
+            key: "nav-".concat(tab),
             value: this.state.value,
             hours: this.props.hours,
             minutes: this.props.minutes,
             onChange: this.onValueChange.bind(this)
           });
-          break;
 
         case defaultTabs[5]:
           return React.createElement(Monthly, {
+            key: "nav-".concat(tab),
             value: this.state.value,
             hours: this.props.hours,
             minutes: this.props.minutes,
             onChange: this.onValueChange.bind(this)
           });
-          break;
 
         case defaultTabs[6]:
           return React.createElement(Yearly, {
+            key: "nav-".concat(tab),
             value: this.state.value,
             hours: this.props.hours,
             minutes: this.props.minutes,
             onChange: this.onValueChange.bind(this)
           });
-          break;
 
         default:
           return;
@@ -208,17 +213,22 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, this.props.style && React.createElement("style", null, this.props.style), React.createElement("div", {
-        className: "cron_builder"
-      }, React.createElement("ul", {
-        className: "nav nav-tabs"
-      }, this.getHeaders()), React.createElement("div", {
-        className: "cron_builder_bordering"
-      }, this.getComponent(this.state.selectedTab)), this.props.showResultText && React.createElement("div", {
-        className: "cron-builder-bg"
-      }, this.getVal()), this.props.showResultCron && React.createElement("div", {
-        className: "cron-builder-bg"
-      }, this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ','))));
+      return React.createElement("div", null, this.props.style && React.createElement("style", null, this.props.style), React.createElement(Jumbotron, {
+        key: "jumbo"
+      }, React.createElement(Nav, {
+        tabs: true,
+        key: "tabs"
+      }, this.getHeaders()), React.createElement(Card, {
+        key: "cont"
+      }, React.createElement(CardBody, {
+        key: "contBody"
+      }, this.getComponent(this.state.selectedTab), React.createElement("hr", {
+        className: "my-4"
+      }), React.createElement(Alert, {
+        color: "success"
+      }, this.props.showResultText && React.createElement("p", null, this.getVal()), React.createElement("hr", null), this.props.showResultText && React.createElement("p", {
+        className: "mb-0"
+      }, this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ',')))))));
     }
   }]);
 

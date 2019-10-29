@@ -5,6 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/esm/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from 'react';
+import { Card, CardBody, Label, FormGroup, Input, Form, CustomInput } from 'reactstrap';
 
 var CustomCron =
 /*#__PURE__*/
@@ -73,12 +74,16 @@ function (_Component) {
       var _this2 = this;
 
       this.state.value = this.props.value;
-      return React.createElement("div", {
-        className: "tab-pane"
-      }, React.createElement("div", {
-        className: "well well-small"
-      }, React.createElement("input", {
+      return React.createElement(Card, null, React.createElement(CardBody, null, React.createElement(Form, {
+        inline: true
+      }, React.createElement(FormGroup, {
+        check: true
+      }, React.createElement(Label, {
+        check: true
+      }, React.createElement(CustomInput, {
+        id: "c/d",
         type: "radio",
+        value: "1",
         onClick: function onClick(e) {
           _this2.setState({
             every: true
@@ -86,17 +91,23 @@ function (_Component) {
 
           _this2.props.onChange();
         },
-        value: "1",
         name: "DailyRadio",
-        checked: this.state.every ? true : false
-      }), "\xA0 Every \xA0", React.createElement("input", {
+        defaultChecked: this.state.every ? true : false
+      }), ' ', "Cada \xA0", React.createElement("input", {
+        className: "form-control ",
         disabled: this.state.every ? false : true,
         type: "Number",
         onChange: this.onDayChange,
         value: this.state.value[3].split('/')[1] ? this.state.value[3].split('/')[1] : ''
-      }), "\xA0 day(s)"), React.createElement("div", {
-        className: "well well-small"
-      }, React.createElement("input", {
+      }), "\xA0 D\xEDa(s)"))), React.createElement("hr", null), React.createElement(Form, {
+        inline: true
+      }, React.createElement(FormGroup, {
+        check: true
+      }, React.createElement(Label, {
+        check: true
+      }, React.createElement(CustomInput, {
+        id: "all-day",
+        type: "radio",
         onClick: function onClick(e) {
           _this2.setState({
             every: false
@@ -104,21 +115,29 @@ function (_Component) {
 
           _this2.props.onChange(['0', _this2.state.value[1], _this2.state.value[2], '?', '*', 'MON-FRI', '*']);
         },
-        type: "radio",
-        value: "2",
         name: "DailyRadio",
-        checked: this.state.every ? false : true
-      }), "\xA0 Every week day\xA0"), "\xA0 Start time\xA0", React.createElement("select", {
-        id: "DailyHours",
-        className: "hours",
+        defaultChecked: this.state.every ? false : true
+      }), ' ', "Todos los d\xEDas de la semana"))), React.createElement("hr", null), React.createElement(Form, {
+        inline: true
+      }, React.createElement(FormGroup, {
+        className: "mr-sm-4 "
+      }, React.createElement(Label, {
+        for: "exampleEmail",
+        className: "mr-sm-2"
+      }, "Hora de inicio"), React.createElement(Input, {
+        type: "select",
+        name: "hours",
         onChange: this.onAtHourChange,
         value: this.state.value[2]
-      }, this.getHours()), "\xA0 : \xA0", React.createElement("select", {
+      }, this.getHours())), React.createElement(FormGroup, {
+        className: "mr-sm-4 "
+      }, React.createElement(Input, {
+        type: "select",
         id: "DailyMinutes",
-        className: "minutes",
+        name: "minutes",
         onChange: this.onAtMinuteChange,
         value: this.state.value[1]
-      }, this.getMinutes()));
+      }, this.getMinutes())))));
     }
   }, {
     key: "getHours",

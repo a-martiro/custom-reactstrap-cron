@@ -1,4 +1,3 @@
-import _defineProperty from "@babel/runtime/helpers/esm/defineProperty";
 import _classCallCheck from "@babel/runtime/helpers/esm/classCallCheck";
 import _createClass from "@babel/runtime/helpers/esm/createClass";
 import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConstructorReturn";
@@ -6,6 +5,7 @@ import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _assertThisInitialized from "@babel/runtime/helpers/esm/assertThisInitialized";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from 'react';
+import { Card, CardBody, CustomInput, Label, FormGroup, Input, Form } from 'reactstrap';
 
 var CustomCron =
 /*#__PURE__*/
@@ -73,63 +73,86 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      this.state.value = this.props.value;
-      return React.createElement("div", {
-        className: "container-fluid"
-      }, React.createElement("div", {
+      this.state.value = this.props.value; //
+
+      return React.createElement(Card, null, React.createElement(CardBody, null, React.createElement("div", {
         className: "well well-small row"
       }, React.createElement("div", {
         className: "span6 col-sm-6"
       }, React.createElement("div", {
         className: "text_align_left"
-      }, React.createElement("input", {
-        type: "checkbox",
+      }, React.createElement(CustomInput, {
+        id: "MON",
+        type: "switch",
+        label: "Lunes",
         value: "MON",
-        onChange: this.onCheck,
-        checked: this.state.value[5].search('MON') !== -1 ? true : false
-      }), "\xA0Monday", React.createElement("br", null), React.createElement("input", {
-        type: "checkbox",
+        onClick: this.onCheck,
+        defaultChecked: this.state.value[5].search('MON') !== -1 ? true : false
+      }), React.createElement(CustomInput, {
+        id: "WED",
+        type: "switch",
+        label: "Mi\xE9rcoles",
         value: "WED",
-        onChange: this.onCheck,
-        checked: this.state.value[5].search('WED') !== -1 ? true : false
-      }), "\xA0Wednesday", React.createElement("br", null), React.createElement("input", {
-        type: "checkbox",
+        onClick: this.onCheck,
+        defaultChecked: this.state.value[5].search('WED') !== -1 ? true : false
+      }), React.createElement(CustomInput, {
+        id: "FRI",
+        type: "switch",
+        label: "Viernes",
         value: "FRI",
-        onChange: this.onCheck,
-        checked: this.state.value[5].search('FRI') !== -1 ? true : false
-      }), "\xA0Friday", React.createElement("br", null), React.createElement("input", {
-        type: "checkbox",
+        onClick: this.onCheck,
+        defaultChecked: this.state.value[5].search('FRI') !== -1 ? true : false
+      }), React.createElement(CustomInput, {
+        id: "SUN",
+        type: "switch",
+        label: "Domingo",
         value: "SUN",
-        onChange: this.onCheck,
-        checked: this.state.value[5].search('SUN') !== -1 ? true : false
-      }), "\xA0Sunday")), React.createElement("div", {
+        onClick: this.onCheck,
+        defaultChecked: this.state.value[5].search('SUN') !== -1 ? true : false
+      }))), React.createElement("div", {
         className: "span6 col-sm-6"
       }, React.createElement("div", {
         className: "text_align_left"
-      }, React.createElement("input", {
-        type: "checkbox",
+      }, React.createElement(CustomInput, {
+        id: "TUE",
+        type: "switch",
+        label: "Martes",
         value: "TUE",
-        onChange: this.onCheck,
-        checked: this.state.value[5].search('TUE') !== -1 ? true : false
-      }), "\xA0Tuesday", React.createElement("br", null), React.createElement("input", {
-        type: "checkbox",
+        onClick: this.onCheck,
+        defaultChecked: this.state.value[5].search('TUE') !== -1 ? true : false
+      }), React.createElement(CustomInput, {
+        id: "THU",
+        type: "switch",
+        label: "Jueves",
         value: "THU",
-        onChange: this.onCheck,
-        checked: this.state.value[5].search('THU') !== -1 ? true : false
-      }), "\xA0Thursday", React.createElement("br", null), React.createElement("input", {
-        type: "checkbox",
+        onClick: this.onCheck,
+        defaultChecked: this.state.value[5].search('THU') !== -1 ? true : false
+      }), React.createElement(CustomInput, {
+        id: "SAT",
+        type: "switch",
+        label: "S\xE1bado",
         value: "SAT",
-        onChange: this.onCheck,
-        checked: this.state.value[5].search('SAT') !== -1 ? true : false
-      }), "\xA0Saturday"), React.createElement("br", null), React.createElement("br", null))), "\xA0 Start time \xA0", React.createElement("select", {
-        className: "hours",
+        onClick: this.onCheck,
+        defaultChecked: this.state.value[5].search('SAT') !== -1 ? true : false
+      })), React.createElement("br", null), React.createElement("br", null))), React.createElement(Form, {
+        inline: true
+      }, React.createElement(FormGroup, {
+        className: "mr-sm-4 "
+      }, React.createElement(Label, {
+        className: "mr-sm-2"
+      }, "Hora de inicio"), React.createElement(Input, {
+        type: "select",
+        name: "hours",
         onChange: this.onAtHourChange,
         value: this.state.value[2]
-      }, this.getHours()), "\xA0 : \xA0", React.createElement("select", _defineProperty({
-        value: "DailyMinutes",
-        className: "minutes",
-        onChange: this.onAtMinuteChange
-      }, "value", this.state.value[1]), this.getMinutes()));
+      }, this.getHours())), React.createElement(FormGroup, {
+        className: "mr-sm-4 "
+      }, React.createElement(Input, {
+        type: "select",
+        name: "minutes",
+        onChange: this.onAtMinuteChange,
+        value: this.state.value[1]
+      }, this.getMinutes())))));
     }
   }, {
     key: "getHours",

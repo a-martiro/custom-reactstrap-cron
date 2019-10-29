@@ -8,6 +8,7 @@ import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Card, CardImg, CardText, CardBody, CardTitle, Label, FormGroup, Input, Form } from 'reactstrap';
 
 var CustomCron =
 /*#__PURE__*/
@@ -76,26 +77,34 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      this.state.value = this.props.value;
-      return React.createElement("div", {
-        className: "tab-pane"
-      }, React.createElement("div", {
-        className: "well well-small"
-      }, "\xA0 In: \xA0", React.createElement(DatePicker, {
+      this.state.value = this.props.value; //
+
+      return React.createElement(Card, null, React.createElement(CardBody, null, "Fecha: \xA0", React.createElement(DatePicker, {
         selected: this.state.startDate,
         onChange: this.onDayChange,
-        minDate: new Date()
-      })), "\xA0 At: \xA0", React.createElement("select", {
-        id: "DailyHours",
-        className: "hours",
+        minDate: new Date(),
+        className: "form-control"
+      }), React.createElement(Form, {
+        inline: true
+      }, React.createElement(FormGroup, {
+        className: "mt-4 mr-sm-4 mt-sm-4"
+      }, React.createElement(Label, {
+        for: "exampleEmail",
+        className: "mr-sm-2"
+      }, "Hora de inicio"), React.createElement(Input, {
+        type: "select",
+        name: "hours",
         onChange: this.onAtHourChange,
         value: this.state.value[2]
-      }, this.getHours()), "\xA0 : \xA0", React.createElement("select", {
+      }, this.getHours())), React.createElement(FormGroup, {
+        className: "mt-4 mr-sm-4 mt-sm-4"
+      }, React.createElement(Input, {
+        type: "select",
         id: "DailyMinutes",
-        className: "minutes",
+        name: "minutes",
         onChange: this.onAtMinuteChange,
         value: this.state.value[1]
-      }, this.getMinutes()));
+      }, this.getMinutes())))));
     }
   }, {
     key: "getHours",

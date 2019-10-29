@@ -4,6 +4,7 @@ import _possibleConstructorReturn from "@babel/runtime/helpers/esm/possibleConst
 import _getPrototypeOf from "@babel/runtime/helpers/esm/getPrototypeOf";
 import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from 'react';
+import { Card, CardBody, Label, FormGroup, Form } from 'reactstrap';
 
 var CustomCron =
 /*#__PURE__*/
@@ -39,15 +40,16 @@ function (_Component) {
     key: "render",
     value: function render() {
       this.state.value = this.props.value;
-      return React.createElement("div", {
-        className: "well"
-      }, "Every ", React.createElement("input", {
+      return React.createElement(Card, null, React.createElement(CardBody, null, React.createElement(Form, {
+        inline: true
+      }, React.createElement(FormGroup, null, React.createElement(Label, null, "Cada \xA0", React.createElement("input", {
+        className: "form-control",
         type: "Number",
         onChange: this.onChange.bind(this),
         value: this.state.value[1].split('/')[1],
         min: 1,
         max: 60
-      }), " minute(s)'");
+      }), "\xA0 Minuto(s)")))));
     }
   }]);
 
