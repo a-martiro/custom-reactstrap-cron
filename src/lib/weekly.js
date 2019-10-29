@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-
+import {
+  Card, CardBody, CustomInput,
+  Label, FormGroup, Input, Form
+} from 'reactstrap';
 
 export default class CustomCron extends Component {
     constructor(props) {
@@ -51,33 +54,43 @@ export default class CustomCron extends Component {
     }
     render() {
         this.state.value = this.props.value;
-        return (<div className="container-fluid">
+        //
+        return (
+          <Card>
+            <CardBody>
             <div className="well well-small row">
                 <div className="span6 col-sm-6">
                     <div className="text_align_left">
-                        <input type="checkbox" value="MON" onChange={this.onCheck} checked={(this.state.value[5].search('MON') !== -1 ) ? true : false} />&nbsp;Monday<br/>
-                        <input type="checkbox" value="WED" onChange={this.onCheck} checked={this.state.value[5].search('WED') !== -1 ? true : false}  />&nbsp;Wednesday<br/>
-                        <input type="checkbox" value="FRI" onChange={this.onCheck} checked={(this.state.value[5].search('FRI') !== -1 ) ? true : false}/>&nbsp;Friday<br/>
-                        <input type="checkbox" value="SUN" onChange={this.onCheck} checked={this.state.value[5].search('SUN') !== -1 ? true : false}/>&nbsp;Sunday
+                        <CustomInput id="MON" type="switch" label="Lunes" value="MON" onClick={this.onCheck} checked={(this.state.value[5].search('MON') !== -1 ) ? true : false} />
+                        <CustomInput id="WED" type="switch" label="Miércoles" value="WED" onClick={this.onCheck} checked={this.state.value[5].search('WED') !== -1 ? true : false}  />
+                        <CustomInput id="FRI" type="switch" label="Viernes" value="FRI" onClick={this.onCheck} checked={(this.state.value[5].search('FRI') !== -1 ) ? true : false}/>
+                        <CustomInput id="SUN" type="switch" label="Domingo" value="SUN" onClick={this.onCheck} checked={this.state.value[5].search('SUN') !== -1 ? true : false}/>
                     </div>
                 </div>
                 <div className="span6 col-sm-6">
                     <div className="text_align_left">
-                        <input type="checkbox" value="TUE" onChange={this.onCheck} checked={this.state.value[5].search('TUE') !== -1 ? true : false}/>&nbsp;Tuesday<br />
-                        <input type="checkbox" value="THU" onChange={this.onCheck} checked={this.state.value[5].search('THU') !== -1 ? true : false}/>&nbsp;Thursday<br />
-                        <input type="checkbox" value="SAT" onChange={this.onCheck} checked={this.state.value[5].search('SAT') !== -1 ? true : false}/>&nbsp;Saturday
+                        <CustomInput id="TUE" type="switch" label="Martes" value="TUE" onClick={this.onCheck} checked={this.state.value[5].search('TUE') !== -1 ? true : false}/>
+                        <CustomInput id="THU" type="switch" label="Jueves" value="THU" onClick={this.onCheck} checked={this.state.value[5].search('THU') !== -1 ? true : false}/>
+                        <CustomInput id="SAT" type="switch" label="Sábado" value="SAT" onClick={this.onCheck} checked={this.state.value[5].search('SAT') !== -1 ? true : false}/>
                     </div><br /><br />
                 </div>
             </div>
-            &nbsp; Start time &nbsp;
-            <select  className="hours" onChange={this.onAtHourChange} value={this.state.value[2]}>
-                {this.getHours()} 
-            </select>
-            &nbsp; : &nbsp;
-            <select value="DailyMinutes" className="minutes"  onChange={this.onAtMinuteChange} value={this.state.value[1]}>
-                {this.getMinutes()}
-            </select>
-        </div>)
+            <Form inline>
+              <FormGroup className="mr-sm-4 ">
+                <Label className="mr-sm-2">Hora de inicio</Label>
+                <Input type="select" name="hours" onChange={this.onAtHourChange} value={this.state.value[2]}>
+                    { this.getHours() }                    
+                </Input>
+              </FormGroup>
+              <FormGroup className="mr-sm-4 ">
+                <Input type="select" name="minutes" onChange={this.onAtMinuteChange} value={this.state.value[1]}>
+                  { this.getMinutes() }               
+                </Input>
+              </FormGroup>
+            </Form>
+            </CardBody>
+          </Card>
+        )
     }
     getHours() {
         let hours = [];

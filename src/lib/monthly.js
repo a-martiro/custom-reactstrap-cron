@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-
+import {
+  Card, CardBody,
+  Label, FormGroup, Input, Form, CustomInput
+} from 'reactstrap';
 
 export default class CustomCron extends Component {
     constructor(props) {
@@ -14,6 +17,7 @@ export default class CustomCron extends Component {
         this.onAtHourChange = this.onAtHourChange.bind(this);
         this.onAtMinuteChange = this.onAtMinuteChange.bind(this);
     }
+    
     componentWillMount() {
         this.state.value = this.props.value;
         if(this.state.value[3] === 'L'){
@@ -26,6 +30,7 @@ export default class CustomCron extends Component {
             this.state.every = "1";
         }
     }
+
     onDayChange(e) {
         if(((parseInt(e.target.value) > 0 && parseInt(e.target.value) <= 31)) || e.target.value == "") {
             let val = ['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],this.state.value[3],'1/1', '?','*'];
@@ -33,6 +38,7 @@ export default class CustomCron extends Component {
             this.props.onChange(val)
         }
     }
+    
     onLastDayChange(e) {
         if(((parseInt(e.target.value) >> 0 && parseInt(e.target.value) <= 31)) || e.target.value == "") {
             let val = ['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],this.state.value[3],'1/1', '?','*'];
@@ -44,50 +50,100 @@ export default class CustomCron extends Component {
             this.props.onChange(val)
         }
     }
+
     onAtHourChange(e) {
         let val = this.state.value;
         val[2] = `${e.target.value}`;
         this.props.onChange(val)
     }
+
     onAtMinuteChange(e) {
         let val = this.state.value;
         val[1] = `${e.target.value}`;
         this.props.onChange(val)
     }
+
     render() {
         this.state.value = this.props.value;
-        return (<div className="tab-pane" >
-                    <div className="well well-small">
-                        <input type="radio" onChange={(e) => {this.setState({every:e.target.value}); this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],'1','1/1', '?','*'])}} value="1" name="MonthlyRadio" checked={this.state.every === "1" ? true : false} />
-                        &nbsp;Day&nbsp;
-                        <input readOnly={this.state.every !== "1"} type="number" value={this.state.value[3]} onChange={this.onDayChange}/>
-                        &nbsp;of every month(s)
-                    </div>
-
-                    <div className="well well-small">
-                        <input onChange={(e) => {this.setState({every:e.target.value}); this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],'L','*', '?','*'])}} type="radio" value="2" name="DailyRadio" checked={this.state.every === "2" ? true : false}/>
-                        &nbsp; Last day of every month &nbsp;
-                    </div>
-                    <div className="well well-small">
-                        <input onChange={(e) => {this.setState({every:e.target.value}); this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2] ,'LW','*', '?','*'])}} type="radio" value="3" name="DailyRadio" checked={this.state.every === "3" ? true : false}/>
-                        &nbsp; On the last weekday of every month &nbsp;
-                    </div>
-                    <div className="well well-small">
-                        <input type="radio"  onChange={(e) => {this.setState({every:e.target.value});  this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],`L-${1}`,'*', '?','*']) }} value="4" name="MonthlyRadio" checked={this.state.every === "4" ? true : false} />
-                       
-                        <input readOnly={this.state.every !== "4"} type="number" value={this.state.value[3].split('-')[1]} onChange={this.onLastDayChange}/>
-                        &nbsp;day(s) before the end of the month
-                    </div>
-                    &nbsp; Start time &nbsp;
-                    <select  className="hours" onChange={this.onAtHourChange} value={this.state.value[2]}>
-                        {this.getHours()}
-                    </select>
-                    &nbsp; : &nbsp;
-                    <select value="DailyMinutes" className="minutes"  onChange={this.onAtMinuteChange} value={this.state.value[1]}>
-                        {this.getMinutes()}
-                    </select>
-                </div>)
+        //
+        return (
+          <Card>
+            <CardBody>
+              <Form inline>
+                <FormGroup check>
+                  <Label check>
+                    <CustomInput type="radio"
+                      onChange={(e) => {
+                        this.setState({every:e.target.value}); 
+                        this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],'1','1/1', '?','*'])
+                      }} 
+                      value="1"
+                       name="MonthlyRadio" 
+                       checked={this.state.every === "1" ? true : false} />{' '}
+                    Día &nbsp;
+                    <input className="form-control" type="Number" readOnly={this.state.every !== "1"} value={this.state.value[3]} onChange={this.onDayChange} />
+                    &nbsp; de cada mes
+                  </Label>
+                </FormGroup>
+              </Form>
+              <hr />
+              <Form inline>
+                <FormGroup check>
+                  <Label check>
+                    <CustomInput type="radio"
+                      onChange={(e) => {
+                        this.setState({every:e.target.value}); 
+                        this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],'L','*', '?','*'])
+                      }} 
+                      type="radio" 
+                      value="2" 
+                      name="DailyRadio" 
+                      checked={this.state.every === "2" ? true : false} />{' '}
+                    Último día de cada mes.
+                  </Label>
+                </FormGroup>
+              </Form>
+              <hr />
+              <Form inline>
+                <FormGroup check>
+                  <Label check>
+                    <CustomInput type="radio"
+                      onChange={(e) => {this.setState({every:e.target.value}); this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2] ,'LW','*', '?','*'])}} type="radio" value="3" name="DailyRadio" checked={this.state.every === "3" ? true : false} />{' '}
+                    El último día de la semana de cada mes.
+                  </Label>
+                </FormGroup>
+              </Form>
+              <hr />
+              <Form inline>
+                <FormGroup check>
+                  <Label check>
+                    <CustomInput type="radio"
+                      onChange={(e) => {this.setState({every:e.target.value});  this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],`L-${1}`,'*', '?','*']) }} value="4" name="MonthlyRadio" checked={this.state.every === "4" ? true : false} />{' '}
+                    &nbsp;
+                    <input className="form-control" type="Number" readOnly={this.state.every !== "4"} value={this.state.value[3].split('-')[1]} onChange={this.onLastDayChange} />
+                    &nbsp; Día(s) antes de fin de mes
+                  </Label>
+                </FormGroup>
+              </Form>
+              <hr />
+              <Form inline>
+                <FormGroup className="mr-sm-4 ">
+                  <Label for="exampleEmail" className="mr-sm-2">Hora de inicio</Label>
+                  <Input type="select" name="hours"  onChange={this.onAtHourChange} value={this.state.value[2]}>
+                      { this.getHours() }                    
+                  </Input>
+                </FormGroup>
+                <FormGroup className="mr-sm-4 ">
+                  <Input type="select" id="DailyMinutes" name="minutes"  onChange={this.onAtMinuteChange} value={this.state.value[1]}>
+                    { this.getMinutes() }               
+                  </Input>
+                </FormGroup>
+              </Form>
+            </CardBody>
+          </Card>
+        )
     }
+
     getHours() {
         let hours = [];
         let leap = parseInt(this.props.hours) || 1;
@@ -96,6 +152,7 @@ export default class CustomCron extends Component {
         }
         return hours;
     }
+
     getMinutes() {
         let minutes = [];
         let leap = parseInt(this.props.minutes) || 1;

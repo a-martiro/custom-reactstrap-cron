@@ -1,7 +1,7 @@
 {
-  "name": "custom-react-cron",
-  "version": "1.1.2",
-  "description": "Custom react component to generate cron expression",
+  "name": "reactstrap-cron",
+  "version": "1.0.0",
+  "description": "Reactstrap component to generate cron expression",
   "keywords": [
     "Custom react cron generator",
     "cron builder",
@@ -14,10 +14,12 @@
     "react cron editor",
     "react cron creator"
   ],
-  "author": "Guy Livne (cloning Sojin antony)",
+  "author": "Williams Alejandro Pérez Granado",
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "cronstrue": "^1.72.0",
-    "react-datepicker": "^2.8.0"
+    "react-datepicker": "^2.8.0",
+    "reactstrap": "^8.1.1"
   },
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -27,15 +29,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com//glivne-chewy/custom-react-cron.git"
+    "url": "https://github.com/alejandr0pg/custom-reactstrap-cron.git"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/runtime": "^7.5.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
     "react-scripts": "^3.1.0",
     "rimraf": "^2.6.3"
   },
@@ -44,7 +46,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
-  "homepage": "https://glivne-chewy.github.io/custom-react-cron",
+  "homepage": "https://github.com/alejandr0pg/custom-reactstrap-cron",
   "scripts": {
     "start": "react-scripts start",
     "build": "rm -rf dist && NODE_ENV=production babel src/lib --out-dir dist --copy-files --ignore __tests__,spec.js,test.js,__snapshots__",

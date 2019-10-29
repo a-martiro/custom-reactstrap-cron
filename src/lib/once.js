@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, Label, FormGroup, Input, Form
+} from 'reactstrap';
 export default class CustomCron extends Component {
     constructor(props) {
         super(props);
@@ -42,25 +45,33 @@ export default class CustomCron extends Component {
     }
     render() {
         this.state.value = this.props.value;
-        return (<div className="tab-pane" >
-                    <div className="well well-small">
-                        &nbsp; In: &nbsp;
-                        <DatePicker
-                            selected={this.state.startDate}
-                            onChange={this.onDayChange}
-                            minDate={new Date()}
-                        />
-                    </div>
-                    
-                    &nbsp; At: &nbsp;
-                    <select id="DailyHours" className="hours" onChange={this.onAtHourChange} value={this.state.value[2]}>
-                        {this.getHours()}                    
-                    </select>
-                    &nbsp; : &nbsp;
-                    <select id="DailyMinutes" className="minutes"  onChange={this.onAtMinuteChange} value={this.state.value[1]}>
-                        {this.getMinutes()}
-                    </select>
-                </div>)
+        //
+        return (
+          <Card>
+            <CardBody>
+              Fecha: &nbsp;
+              <DatePicker
+                  selected={this.state.startDate}
+                  onChange={this.onDayChange}
+                  minDate={new Date()}
+                  className="form-control"
+              />
+              <Form inline>
+                <FormGroup className="mt-4 mr-sm-4 mt-sm-4">
+                  <Label for="exampleEmail" className="mr-sm-2">Hora de inicio</Label>
+                  <Input type="select" name="hours"  onChange={this.onAtHourChange} value={this.state.value[2]}>
+                      { this.getHours() }                    
+                  </Input>
+                </FormGroup>
+                <FormGroup className="mt-4 mr-sm-4 mt-sm-4">
+                  <Input type="select" id="DailyMinutes" name="minutes"  onChange={this.onAtMinuteChange} value={this.state.value[1]}>
+                    { this.getMinutes() }               
+                  </Input>
+                </FormGroup>
+              </Form>
+            </CardBody>
+          </Card>
+        )
     }
     getHours() {
         let hours = [];

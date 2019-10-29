@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-
+import {
+  Card, CardBody,
+  Label, FormGroup, Input, Form, CustomInput
+} from 'reactstrap';
 
 export default class CustomCron extends Component {
     constructor(props) {
@@ -11,12 +14,14 @@ export default class CustomCron extends Component {
         this.onAtHourChange = this.onAtHourChange.bind(this);
         this.onAtMinuteChange = this.onAtMinuteChange.bind(this);
     }
+
     componentWillMount() {
         this.state.value = this.props.value;
         if(this.state.value[2].search('0/') === 0 || this.state.value[2] === '*') {
             this.state.every = true;
         }
     }
+
     onHourChange(e) {
         if(this.state.every && ((e.target.value > 0 && e.target.value < 24) || e.target.value == '')) {
             let val = ['0','0','*','*','*','?','*'];
@@ -28,11 +33,13 @@ export default class CustomCron extends Component {
             this.props.onChange(val)
         } 
     }
+
     onAtHourChange(e) {
         let val = ['0',this.state.value[1],'*','*','*','?','*']
         val[2] = `${e.target.value}/1`;
         this.props.onChange(val)
     }
+
     onAtMinuteChange(e) {
         let val = ['0','*',this.state.value[2],'*','*','?','*']
         val[1] = `${e.target.value}`;
@@ -42,32 +49,54 @@ export default class CustomCron extends Component {
 
     render() {
         this.state.value = this.props.value
-        return (   
-            <div className="tab-content">              
-                <div className="tab-pane active">
-                    <div className="well well-small">
-                        <input type="radio" onClick={(e) => {this.setState({every:true}) ; this.props.onChange(['0','0','0/1','*','*','?','*'])}} checked={this.state.every ? true:false} />
-                        <span >&nbsp;Every &nbsp;</span>
-                        <input disabled={this.state.every ? false: true} type="Number" onChange={this.onHourChange} value={this.state.value[2].split('/')[1] ? this.state.value[2].split('/')[1] : ''}  />
-                        <span >&nbsp;hour(s)&nbsp;</span>
-                    </div>
-                    <div className="well row well-small margin-right-0 margin-left-0">
-                    <div className="col-md-offset-2 col-md-6 text_align_right">
-                        <input type="radio" onClick={(e) => {this.setState({every:false}); this.props.onChange()}} checked={this.state.every ? false : true}/>
-                            <span className="margin-right-10 ">&nbsp;At&nbsp;</span>
-                        <select className="hours" disabled={this.state.every ? true: false}  onChange={this.onAtHourChange} value={this.state.value[2].split('/')[0] ? this.state.value[2].split('/')[0] : '00'}>
-                            {this.getHours()}
-                        </select>
-                        &nbsp; : &nbsp;
-                        <select  className="minutes" disabled={this.state.every ? true: false} onChange={this.onAtMinuteChange} value={this.state.value[1]}>
-                            {this.getMinutes()}
-                        </select>
-                    </div>
-                    </div>
-                </div>
-            </div>
+        return (
+          <Card>
+            <CardBody>
+              <Form inline>
+                <FormGroup check>
+                  <Label check>
+                    <CustomInput type="radio"
+                      value="1"
+                      onClick={(e) => {
+                        this.setState({every:true}); 
+                        this.props.onChange(['0','0','0/1','*','*','?','*'])
+                      }} 
+                      checked={this.state.every ? true:false}
+                      name="HourlyRadio" />{' '}
+                    Cada &nbsp;
+                    <input className="form-control" 
+                      disabled={this.state.every ? false: true} 
+                      type="Number" 
+                      onChange={this.onHourChange}
+                      value={this.state.value[2].split('/')[1] ? this.state.value[2].split('/')[1] : ''}/>
+                    &nbsp; Hora(s)
+                  </Label>
+                </FormGroup>
+              </Form>
+              <hr />
+              <Form inline>
+                <FormGroup className="mr-sm-4 " check>
+                  <Label check className="mr-sm-2">
+                    <CustomInput type="radio"
+                      onClick={(e) => {this.setState({every:false}); this.props.onChange()}} checked={this.state.every ? false : true}
+                      name="HourlyRadio" />{' '}
+                      Hora de inicio
+                    </Label>
+                  <Input type="select" name="hours" disabled={this.state.every ? true: false} onChange={this.onAtHourChange} value={this.state.value[2].split('/')[0] ? this.state.value[2].split('/')[0] : '00'}>
+                      { this.getHours() }                    
+                  </Input>
+                </FormGroup>
+                <FormGroup className="mr-sm-4 ">
+                  <Input type="select" name="minutes" disabled={this.state.every ? true: false} onChange={this.onAtMinuteChange} value={this.state.value[1]} >
+                    { this.getMinutes() }               
+                  </Input>
+                </FormGroup>
+              </Form>
+            </CardBody>
+          </Card>
         )
     }
+
     getHours() {
         let hours = [];
         let leap = parseInt(this.props.hours) || 1;
@@ -76,6 +105,7 @@ export default class CustomCron extends Component {
         }
         return hours;
     }
+
     getMinutes() {
         let minutes = [];
         let leap = parseInt(this.props.minutes) || 1;

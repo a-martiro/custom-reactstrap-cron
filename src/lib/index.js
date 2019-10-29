@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import cronstrue from 'cronstrue';
+import cronstrue from 'cronstrue/i18n';
 import Once from './once';
 import Minutes from './minutes';
 import Daily from './daily';
@@ -7,11 +7,13 @@ import Hourly from './hourly';
 import Weekly from './weekly';
 import Monthly from './monthly';
 import Yearly from './yearly';
+import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap';
+
 // import './cron-builder.css';
-const defaultTabs = ['Once', 'Minutes','Hourly','Daily','Weekly', 'Monthly'] //,'Yearly'
+const defaultTabs = ['Una vez', 'Minutos', 'Cada hora', 'Diario', 'Semanal', 'Mensual'] //,'Yearly'
 const date = new Date();
 const defaultTabsVal = {
-    Once: [ //Now
+    'Una vez': [ //Now
         '0', 
         '0', 
         (date.getHours() < 23 ? date.getHours() + 1 : 23).toString(),
@@ -20,11 +22,11 @@ const defaultTabsVal = {
         '?',
         date.getFullYear().toString()
     ],
-    Minutes: ['0','0/1','*','*','*','?','*'],
-    Hourly: ['0','0','0/1','*','*','?','*'],
-    Daily: ['0','0','00','1/1','*','?','*'],
-    Weekly: ['0','0','00','?','*','*','*'],
-    Monthly:['0','0','00','1','1/1','?','*']
+    'Minutos': ['0','0/1','*','*','*','?','*'],
+    'Cada hora': ['0','0','0/1','*','*','?','*'],
+    'Diario': ['0','0','00','1/1','*','?','*'],
+    'Semanal': ['0','0','00','?','*','*','*'],
+    'Mensual':['0','0','00','1','1/1','?','*']
 };
 let tabs = [];
 export default class CustomCron extends Component {
@@ -72,9 +74,15 @@ export default class CustomCron extends Component {
         this.parentChange(this.defaultValue(tab))
     }
     getHeaders() {
-        return tabs.map(d => {  
-            return <li className={this.state.selectedTab === d ? 'active' : ''}><a onClick={this.tabChanged.bind(this,d)}>{d}</a></li>
-        })
+      return tabs.map(d => {  
+        return (
+          <NavItem>
+            <NavLink 
+              onClick={this.tabChanged.bind(this,d)} 
+              active={this.state.selectedTab === d}>{d}</NavLink>
+          </NavItem>
+        )
+      })
     }
     onValueChange(val) {     
         if(val && val.length) {
@@ -94,7 +102,7 @@ export default class CustomCron extends Component {
         this.props.onChange(newVal) 
     }
     getVal() {
-        let val = cronstrue.toString(this.state.value.toString().replace(/,/g,' ').replace(/!/g, ','))
+        let val = cronstrue.toString(this.state.value.toString().replace(/,/g,' ').replace(/!/g, ','), { locale: "es" })
         if(val.search('undefined') === -1) {
             return val;
         }
@@ -131,19 +139,30 @@ export default class CustomCron extends Component {
     }
 
     render() {
-        return (
-            <div>
-                {this.props.style && <style>{this.props.style}</style>}
-                <div className='cron_builder'>
-                    <ul className="nav nav-tabs" >
-                        {this.getHeaders()}
-                    </ul>
-                    <div className="cron_builder_bordering">{this.getComponent(this.state.selectedTab)}</div>
-                    {this.props.showResultText && <div className="cron-builder-bg">{this.getVal()}</div>}
-                    {this.props.showResultCron && <div className="cron-builder-bg">{this.state.value.toString().replace(/,/g,' ').replace(/!/g, ',')}</div>}
-                </div>
-            </div>
-        )
+      return (
+          <div>
+            {this.props.style && <style>{this.props.style}</style>}
+            <Jumbotron>
+                <Nav tabs>
+                    { this.getHeaders() }
+                </Nav>
+                <Card>
+                  <CardBody>
+                    { this.getComponent(this.state.selectedTab) }
+                    <hr class="my-4" />
+                    <Alert color="success">
+                      {/* <h5 className="alert-heading">Resultado!</h5> */}
+                      {this.props.showResultText && <p>{this.getVal()}</p>}
+                      <hr />
+                      { this.props.showResultText && <p className="mb-0">
+                        {this.state.value.toString().replace(/,/g,' ').replace(/!/g, ',')}
+                      </p> }
+                    </Alert>
+                  </CardBody>
+                </Card>
+            </Jumbotron>
+          </div>
+      )
     }
 }
 

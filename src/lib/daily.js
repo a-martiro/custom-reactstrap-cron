@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import {
+  Card, CardBody,
+  Label, FormGroup, Input, Form, CustomInput
+} from 'reactstrap';
 
 export default class CustomCron extends Component {
     constructor(props) {
@@ -12,6 +16,7 @@ export default class CustomCron extends Component {
         this.onAtHourChange = this.onAtHourChange.bind(this);
         this.onAtMinuteChange = this.onAtMinuteChange.bind(this);
     }
+
     componentWillMount() {
         this.state.value = this.props.value;
         if(this.state.value[3] === '?') {
@@ -20,6 +25,7 @@ export default class CustomCron extends Component {
             this.state.every = true;
         }
     }
+
     onDayChange(e) {
         if((e.target.value > 0 && e.target.value < 32 ) || e.target.value == '') {
             let val = ['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],'*','*','?','*'];
@@ -32,39 +38,67 @@ export default class CustomCron extends Component {
         }
         
     }
+
     onAtHourChange(e) {
         let val = this.state.value;
         val[2] = `${e.target.value}`;
         this.props.onChange(val)
     }
+
     onAtMinuteChange(e) {
         let val = this.state.value;
         val[1] = `${e.target.value}`;
         this.props.onChange(val)
     }
+
     render() {
         this.state.value = this.props.value;
-        return (<div className="tab-pane" >
-                    <div className="well well-small">
-                        <input type="radio" onClick={(e) => {this.setState({every:true}) ; this.props.onChange()}} value="1" name="DailyRadio" checked={this.state.every ? true : false} />
-                        &nbsp; Every &nbsp;
-                        <input disabled={this.state.every ? false: true} type="Number" onChange={this.onDayChange} value={this.state.value[3].split('/')[1] ? this.state.value[3].split('/')[1] :''} />
-                        &nbsp; day(s)
-                    </div>
-                    <div className="well well-small">
-                        <input onClick={(e) => {this.setState({every:false}); this.props.onChange(['0',this.state.value[1], this.state.value[2],'?','*', 'MON-FRI','*'])}} type="radio" value="2" name="DailyRadio" checked={this.state.every ? false : true}/>
-                        &nbsp; Every week day&nbsp;
-                    </div>
-                    &nbsp; Start time&nbsp;
-                    <select id="DailyHours" className="hours" onChange={this.onAtHourChange} value={this.state.value[2]}>
-                        {this.getHours()}                    
-                    </select>
-                    &nbsp; : &nbsp;
-                    <select id="DailyMinutes" className="minutes"  onChange={this.onAtMinuteChange} value={this.state.value[1]}>
-                        {this.getMinutes()}
-                    </select>
-                </div>)
+        return (
+          <Card>
+            <CardBody>
+              <Form inline>
+                <FormGroup check>
+                  <Label check>
+                    <CustomInput type="radio"
+                      value="1"
+                      onClick={(e) => {this.setState({every:true}) ; this.props.onChange()}}
+                      name="DailyRadio" checked={this.state.every ? true : false} />{' '}
+                    Cada &nbsp;
+                    <input className="form-control " disabled={this.state.every ? false: true} type="Number" onChange={this.onDayChange} value={this.state.value[3].split('/')[1] ? this.state.value[3].split('/')[1] :''} />
+                    &nbsp; Día(s)
+                  </Label>
+                </FormGroup>
+              </Form>
+              <hr />
+              <Form inline>
+                <FormGroup check>
+                  <Label check>
+                    <CustomInput type="radio"
+                      onClick={(e) => {this.setState({every:false}); this.props.onChange(['0',this.state.value[1], this.state.value[2],'?','*', 'MON-FRI','*'])}}
+                      name="DailyRadio" checked={this.state.every ? false : true} />{' '}
+                    Todos los días de la semana
+                  </Label>
+                </FormGroup>
+              </Form>
+              <hr />
+              <Form inline>
+                <FormGroup className="mr-sm-4 ">
+                  <Label for="exampleEmail" className="mr-sm-2">Hora de inicio</Label>
+                  <Input type="select" name="hours"  onChange={this.onAtHourChange} value={this.state.value[2]}>
+                      { this.getHours() }                    
+                  </Input>
+                </FormGroup>
+                <FormGroup className="mr-sm-4 ">
+                  <Input type="select" id="DailyMinutes" name="minutes"  onChange={this.onAtMinuteChange} value={this.state.value[1]}>
+                    { this.getMinutes() }               
+                  </Input>
+                </FormGroup>
+              </Form>
+            </CardBody>
+          </Card>
+        )
     }
+
     getHours() {
         let hours = [];
         let leap = parseInt(this.props.hours) || 1;
@@ -73,6 +107,7 @@ export default class CustomCron extends Component {
         }
         return hours;
     }
+
     getMinutes() {
         let minutes = [];
         let leap = parseInt(this.props.minutes) || 1;
