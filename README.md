@@ -20,8 +20,8 @@ yarn add custom-reactstrap-cron
 
 ```
 import React, { Component } from 'react'
-import CustomCron from 'custom-react-cron'
-import 'custom-react-cron/dist/cron-builder.css'
+import CustomCron from 'custom-reactstrap-cron'
+import 'custom-reactstrap-cron/dist/cron-builder.css'
 
 
 class App extends Component {
