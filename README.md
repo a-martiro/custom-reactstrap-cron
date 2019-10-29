@@ -1,25 +1,21 @@
-# custom-react-cron
+# custom-reactstrap-cron
 
-Simple customizable react component to generate cron expression
+Componente Reactstrap personalizable simple para generar expresión cron adaptado al español
 
 ## Getting Started
 
-Package helps to build linux customized scheduler cron expression.
-Make sure you have include bootstrap in your project
+El paquete ayuda a construir la expresión cron del planificador personalizado de Linux.
+Asegúrese de incluir bootstrap en su proyecto
 
 ```
 data = '* * * * * * *'
 ```
 ```
-npm install custom-react-cron
-
+npm install custom-reactstrap-cron
 ```
-## demo
-[Live demo](https://glivne-chewy.github.io/custom-react-cron/)
-
-![alt text](https://raw.githubusercontent.com/sojinantony01/react-cron-generator/master/public/images/Screenshot%20from%202019-06-08%2000-31-31.png)
-
-![alt text](https://raw.githubusercontent.com/sojinantony01/react-cron-generator/master/public/images/Screenshot%20from%202019-06-08%2000-31-57.png)
+```
+yarn add custom-reactstrap-cron
+```
 
 
 ```
@@ -91,6 +87,4 @@ export default App;
 | minutes | set minutes leaps | 1 |
 | showResultText | show in readable text format | false |
 | showResultCron | show cron expression | false | 
-## Acknowledgments
-*cronstrue
-*viswanath lakshmanan
+
