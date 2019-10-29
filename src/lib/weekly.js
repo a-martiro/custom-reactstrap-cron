@@ -61,17 +61,17 @@ export default class CustomCron extends Component {
             <div className="well well-small row">
                 <div className="span6 col-sm-6">
                     <div className="text_align_left">
-                        <CustomInput id="MON" type="switch" label="Lunes" value="MON" onClick={this.onCheck} checked={(this.state.value[5].search('MON') !== -1 ) ? true : false} />
-                        <CustomInput id="WED" type="switch" label="Miércoles" value="WED" onClick={this.onCheck} checked={this.state.value[5].search('WED') !== -1 ? true : false}  />
-                        <CustomInput id="FRI" type="switch" label="Viernes" value="FRI" onClick={this.onCheck} checked={(this.state.value[5].search('FRI') !== -1 ) ? true : false}/>
-                        <CustomInput id="SUN" type="switch" label="Domingo" value="SUN" onClick={this.onCheck} checked={this.state.value[5].search('SUN') !== -1 ? true : false}/>
+                        <CustomInput id="MON" type="switch" label="Lunes" value="MON" onClick={this.onCheck} defaultChecked={(this.state.value[5].search('MON') !== -1 ) ? true : false} />
+                        <CustomInput id="WED" type="switch" label="Miércoles" value="WED" onClick={this.onCheck} defaultChecked={this.state.value[5].search('WED') !== -1 ? true : false}  />
+                        <CustomInput id="FRI" type="switch" label="Viernes" value="FRI" onClick={this.onCheck} defaultChecked={(this.state.value[5].search('FRI') !== -1 ) ? true : false}/>
+                        <CustomInput id="SUN" type="switch" label="Domingo" value="SUN" onClick={this.onCheck} defaultChecked={this.state.value[5].search('SUN') !== -1 ? true : false}/>
                     </div>
                 </div>
                 <div className="span6 col-sm-6">
                     <div className="text_align_left">
-                        <CustomInput id="TUE" type="switch" label="Martes" value="TUE" onClick={this.onCheck} checked={this.state.value[5].search('TUE') !== -1 ? true : false}/>
-                        <CustomInput id="THU" type="switch" label="Jueves" value="THU" onClick={this.onCheck} checked={this.state.value[5].search('THU') !== -1 ? true : false}/>
-                        <CustomInput id="SAT" type="switch" label="Sábado" value="SAT" onClick={this.onCheck} checked={this.state.value[5].search('SAT') !== -1 ? true : false}/>
+                        <CustomInput id="TUE" type="switch" label="Martes" value="TUE" onClick={this.onCheck} defaultChecked={this.state.value[5].search('TUE') !== -1 ? true : false}/>
+                        <CustomInput id="THU" type="switch" label="Jueves" value="THU" onClick={this.onCheck} defaultChecked={this.state.value[5].search('THU') !== -1 ? true : false}/>
+                        <CustomInput id="SAT" type="switch" label="Sábado" value="SAT" onClick={this.onCheck} defaultChecked={this.state.value[5].search('SAT') !== -1 ? true : false}/>
                     </div><br /><br />
                 </div>
             </div>

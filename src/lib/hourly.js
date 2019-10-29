@@ -55,13 +55,13 @@ export default class CustomCron extends Component {
               <Form inline>
                 <FormGroup check>
                   <Label check>
-                    <CustomInput type="radio"
+                    <CustomInput id="c/h" type="radio"
                       value="1"
                       onClick={(e) => {
                         this.setState({every:true}); 
                         this.props.onChange(['0','0','0/1','*','*','?','*'])
                       }} 
-                      checked={this.state.every ? true:false}
+                      defaultChecked={this.state.every ? true:false}
                       name="HourlyRadio" />{' '}
                     Cada &nbsp;
                     <input className="form-control" 
@@ -77,8 +77,8 @@ export default class CustomCron extends Component {
               <Form inline>
                 <FormGroup className="mr-sm-4 " check>
                   <Label check className="mr-sm-2">
-                    <CustomInput type="radio"
-                      onClick={(e) => {this.setState({every:false}); this.props.onChange()}} checked={this.state.every ? false : true}
+                    <CustomInput id="hours" type="radio"
+                      onClick={(e) => {this.setState({every:false}); this.props.onChange()}} defaultChecked={this.state.every ? false : true}
                       name="HourlyRadio" />{' '}
                       Hora de inicio
                     </Label>

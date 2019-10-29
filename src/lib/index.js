@@ -76,8 +76,8 @@ export default class CustomCron extends Component {
     getHeaders() {
       return tabs.map(d => {  
         return (
-          <NavItem>
-            <NavLink 
+          <NavItem key={`navItem-${d}`}>
+            <NavLink key={`navLink-${d}`}
               onClick={this.tabChanged.bind(this,d)} 
               active={this.state.selectedTab === d}>{d}</NavLink>
           </NavItem>
@@ -113,26 +113,19 @@ export default class CustomCron extends Component {
     getComponent(tab) {
         switch(tab) {
             case defaultTabs[0] : 
-                return <Once value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
-                break;
+                return <Once key={`nav-${tab}`} value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
             case defaultTabs[1] : 
-                return <Minutes value={this.state.value} onChange={this.onValueChange.bind(this)}/>
-                break;
+                return <Minutes key={`nav-${tab}`} value={this.state.value} onChange={this.onValueChange.bind(this)}/>
             case defaultTabs[2] : 
-                return <Hourly value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
-                break;
+                return <Hourly key={`nav-${tab}`} value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
             case defaultTabs[3] : 
-                return <Daily value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
-                break;
+                return <Daily key={`nav-${tab}`} value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
             case defaultTabs[4] : 
-                return <Weekly value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
-                break;
+                return <Weekly key={`nav-${tab}`} value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
             case defaultTabs[5] : 
-                return <Monthly value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
-                break;
+                return <Monthly key={`nav-${tab}`} value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
             case defaultTabs[6] : 
-                return <Yearly value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
-                break;
+                return <Yearly key={`nav-${tab}`} value={this.state.value} hours={this.props.hours} minutes={this.props.minutes} onChange={this.onValueChange.bind(this)}/>
             default: 
                 return
         }
@@ -142,14 +135,14 @@ export default class CustomCron extends Component {
       return (
           <div>
             {this.props.style && <style>{this.props.style}</style>}
-            <Jumbotron>
-                <Nav tabs>
+            <Jumbotron key="jumbo">
+                <Nav tabs key="tabs">
                     { this.getHeaders() }
                 </Nav>
-                <Card>
-                  <CardBody>
+                <Card key="cont">
+                  <CardBody key="contBody">
                     { this.getComponent(this.state.selectedTab) }
-                    <hr class="my-4" />
+                    <hr className="my-4" />
                     <Alert color="success">
                       {/* <h5 className="alert-heading">Resultado!</h5> */}
                       {this.props.showResultText && <p>{this.getVal()}</p>}

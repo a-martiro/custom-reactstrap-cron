@@ -72,7 +72,7 @@ export default class CustomCron extends Component {
               <Form inline>
                 <FormGroup check>
                   <Label check>
-                    <CustomInput type="radio"
+                    <CustomInput id="d/1" type="radio"
                       onChange={(e) => {
                         this.setState({every:e.target.value}); 
                         this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],'1','1/1', '?','*'])
@@ -90,12 +90,11 @@ export default class CustomCron extends Component {
               <Form inline>
                 <FormGroup check>
                   <Label check>
-                    <CustomInput type="radio"
+                    <CustomInput id="d/2" type="radio"
                       onChange={(e) => {
                         this.setState({every:e.target.value}); 
                         this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],'L','*', '?','*'])
                       }} 
-                      type="radio" 
                       value="2" 
                       name="DailyRadio" 
                       checked={this.state.every === "2" ? true : false} />{' '}
@@ -107,7 +106,7 @@ export default class CustomCron extends Component {
               <Form inline>
                 <FormGroup check>
                   <Label check>
-                    <CustomInput type="radio"
+                    <CustomInput id="d/3" type="radio"
                       onChange={(e) => {this.setState({every:e.target.value}); this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2] ,'LW','*', '?','*'])}} type="radio" value="3" name="DailyRadio" checked={this.state.every === "3" ? true : false} />{' '}
                     El último día de la semana de cada mes.
                   </Label>
@@ -117,7 +116,7 @@ export default class CustomCron extends Component {
               <Form inline>
                 <FormGroup check>
                   <Label check>
-                    <CustomInput type="radio"
+                    <CustomInput id="d/4" type="radio"
                       onChange={(e) => {this.setState({every:e.target.value});  this.props.onChange(['0',this.state.value[1] === '*' ? '0' : this.state.value[1], this.state.value[2] === '*' ? '0': this.state.value[2],`L-${1}`,'*', '?','*']) }} value="4" name="MonthlyRadio" checked={this.state.every === "4" ? true : false} />{' '}
                     &nbsp;
                     <input className="form-control" type="Number" readOnly={this.state.every !== "4"} value={this.state.value[3].split('-')[1]} onChange={this.onLastDayChange} />
