@@ -86,7 +86,7 @@ function (_Component) {
 
           _this2.props.onChange(['0', '0', '0/1', '*', '*', '?', '*']);
         },
-        defaultChecked: this.state.every ? true : false,
+        checked: this.state.every ? true : false,
         name: "HourlyRadio"
       }), ' ', "Cada \xA0", React.createElement("input", {
         className: "form-control",
@@ -112,7 +112,7 @@ function (_Component) {
 
           _this2.props.onChange();
         },
-        defaultChecked: this.state.every ? false : true,
+        checked: this.state.every ? false : true,
         name: "HourlyRadio"
       }), ' ', "Hora de inicio"), React.createElement(Input, {
         type: "select",

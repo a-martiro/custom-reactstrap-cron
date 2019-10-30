@@ -216,7 +216,7 @@ function (_Component) {
           className: "my-4"
         }), React.createElement(Alert, {
           color: "success"
-        }, this.props.showResultText && React.createElement("p", null, this.getVal()), React.createElement("hr", null), this.props.showResultCron && React.createElement("p", {
+        }, this.props.showResultText && React.createElement("p", null, this.getVal()), this.props.showResultCron && React.createElement("hr", null), this.props.showResultCron && React.createElement("p", {
           className: "mb-0"
         }, this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ','))));
       }
@@ -224,16 +224,14 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, this.props.style && React.createElement("style", null, this.props.style), React.createElement(Jumbotron, {
-        key: "jumbo"
-      }, React.createElement(Nav, {
+      return React.createElement("div", null, this.props.style && React.createElement("style", null, this.props.style), React.createElement(Nav, {
         tabs: true,
         key: "tabs"
       }, this.getHeaders()), React.createElement(Card, {
         key: "cont"
       }, React.createElement(CardBody, {
         key: "contBody"
-      }, this.getComponent(this.state.selectedTab), this.resultText()))));
+      }, this.getComponent(this.state.selectedTab), this.resultText())));
     }
   }]);
 
