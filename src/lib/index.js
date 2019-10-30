@@ -9,7 +9,6 @@ import Monthly from './monthly';
 import Yearly from './yearly';
 import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap';
 
-// import './cron-builder.css';
 const defaultTabs = ['Una vez', 'Minutos', 'Cada hora', 'Diario', 'Semanal', 'Mensual'] //,'Yearly'
 const date = new Date();
 const defaultTabsVal = {
@@ -32,12 +31,10 @@ let tabs = [];
 export default class CustomCron extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        //    selectedTab: tabs[0],
-           
-        };
+        this.state = {};
         tabs = props.tabs || defaultTabs;
     }
+
     componentWillMount() {
         if(!this.props.value || this.props.value.split(' ').length !== 7 ) {
             this.state.value = defaultTabsVal[tabs[0]];
@@ -73,6 +70,7 @@ export default class CustomCron extends Component {
         this.setState({selectedTab:tab, value:this.defaultValue(tab)}); 
         this.parentChange(this.defaultValue(tab))
     }
+
     getHeaders() {
       return tabs.map(d => {  
         return (
@@ -84,6 +82,7 @@ export default class CustomCron extends Component {
         )
       })
     }
+
     onValueChange(val) {     
         if(val && val.length) {
             this.setState({value:val})
@@ -101,13 +100,13 @@ export default class CustomCron extends Component {
         console.log(newVal);
         this.props.onChange(newVal) 
     }
+
     getVal() {
         let val = cronstrue.toString(this.state.value.toString().replace(/,/g,' ').replace(/!/g, ','), { locale: "es" })
         if(val.search('undefined') === -1) {
             return val;
         }
         return '-'
-        
     }
 
     getComponent(tab) {
@@ -131,10 +130,29 @@ export default class CustomCron extends Component {
         }
     }
 
+    resultText() {
+      if (this.props.showResultText || this.props.showResultCron) {
+        return (
+          <div>
+            <hr className="my-4" />
+            <Alert color="success">
+              { this.props.showResultText && <p>{this.getVal()}</p> }
+              <hr />
+  
+              { this.props.showResultCron && 
+                <p className="mb-0">
+                  { this.state.value.toString().replace(/,/g,' ').replace(/!/g, ',') }
+                </p> }
+            </Alert>
+          </div>
+        )
+      }
+    }
+
     render() {
       return (
           <div>
-            {this.props.style && <style>{this.props.style}</style>}
+            { this.props.style && <style>{this.props.style}</style> }
             <Jumbotron key="jumbo">
                 <Nav tabs key="tabs">
                     { this.getHeaders() }
@@ -142,15 +160,7 @@ export default class CustomCron extends Component {
                 <Card key="cont">
                   <CardBody key="contBody">
                     { this.getComponent(this.state.selectedTab) }
-                    <hr className="my-4" />
-                    <Alert color="success">
-                      {/* <h5 className="alert-heading">Resultado!</h5> */}
-                      {this.props.showResultText && <p>{this.getVal()}</p>}
-                      <hr />
-                      { this.props.showResultText && <p className="mb-0">
-                        {this.state.value.toString().replace(/,/g,' ').replace(/!/g, ',')}
-                      </p> }
-                    </Alert>
+                    { this.resultText() }
                   </CardBody>
                 </Card>
             </Jumbotron>
