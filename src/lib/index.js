@@ -59,7 +59,6 @@ export default class CustomCron extends Component {
         } else {
             this.state.selectedTab = tabs[0];
         }
-       
     }
 
     defaultValue(tab) {
@@ -136,9 +135,8 @@ export default class CustomCron extends Component {
           <div>
             <hr className="my-4" />
             <Alert color="success">
-              { this.props.showResultText && <p>{this.getVal()}</p> }
-              <hr />
-  
+              { this.props.showResultText && <p>{ this.getVal() }</p> }
+              { this.props.showResultCron && <hr /> }
               { this.props.showResultCron && 
                 <p className="mb-0">
                   { this.state.value.toString().replace(/,/g,' ').replace(/!/g, ',') }
@@ -153,17 +151,15 @@ export default class CustomCron extends Component {
       return (
           <div>
             { this.props.style && <style>{this.props.style}</style> }
-            <Jumbotron key="jumbo">
-                <Nav tabs key="tabs">
-                    { this.getHeaders() }
-                </Nav>
-                <Card key="cont">
-                  <CardBody key="contBody">
-                    { this.getComponent(this.state.selectedTab) }
-                    { this.resultText() }
-                  </CardBody>
-                </Card>
-            </Jumbotron>
+            <Nav tabs key="tabs">
+                { this.getHeaders() }
+            </Nav>
+            <Card key="cont">
+                <CardBody key="contBody">
+                { this.getComponent(this.state.selectedTab) }
+                { this.resultText() }
+                </CardBody>
+            </Card>
           </div>
       )
     }

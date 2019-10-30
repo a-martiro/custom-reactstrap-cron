@@ -62,9 +62,9 @@ export default class CustomCron extends Component {
                     <CustomInput id="c/d" type="radio"
                       value="1"
                       onClick={(e) => {this.setState({every:true}) ; this.props.onChange()}}
-                      name="DailyRadio" defaultChecked={this.state.every ? true : false} />{' '}
+                      name="DailyRadio" checked={this.state.every ? true : false} />{' '}
                     Cada &nbsp;
-                    <input className="form-control " disabled={this.state.every ? false: true} type="Number" onChange={this.onDayChange} value={this.state.value[3].split('/')[1] ? this.state.value[3].split('/')[1] :''} />
+                    <input className="form-control" disabled={this.state.every ? false: true} type="Number" onChange={this.onDayChange} value={this.state.value[3].split('/')[1] ? this.state.value[3].split('/')[1] :''} />
                     &nbsp; Día(s)
                   </Label>
                 </FormGroup>
@@ -73,9 +73,13 @@ export default class CustomCron extends Component {
               <Form inline>
                 <FormGroup check>
                   <Label check>
-                    <CustomInput id="all-day" type="radio"
+                    <CustomInput 
+                      id="all-day" 
+                      type="radio"
+                      value="2"
+                      name="DailyRadio" 
                       onClick={(e) => {this.setState({every:false}); this.props.onChange(['0',this.state.value[1], this.state.value[2],'?','*', 'MON-FRI','*'])}}
-                      name="DailyRadio" defaultChecked={this.state.every ? false : true} />{' '}
+                      checked={this.state.every ? false : true} />{' '}
                     Todos los días de la semana
                   </Label>
                 </FormGroup>
