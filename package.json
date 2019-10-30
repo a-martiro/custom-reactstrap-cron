@@ -1,6 +1,6 @@
 {
   "name": "custom-reactstrap-cron",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Reactstrap component to generate cron expression",
   "keywords": [
     "Custom react cron generator",
