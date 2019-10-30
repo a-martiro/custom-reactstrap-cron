@@ -12,8 +12,7 @@ import Hourly from './hourly';
 import Weekly from './weekly';
 import Monthly from './monthly';
 import Yearly from './yearly';
-import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap'; // import './cron-builder.css';
-
+import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap';
 var defaultTabs = ['Una vez', 'Minutos', 'Cada hora', 'Diario', 'Semanal', 'Mensual']; //,'Yearly'
 
 var date = new Date();
@@ -39,8 +38,7 @@ function (_Component) {
     _classCallCheck(this, CustomCron);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(CustomCron).call(this, props));
-    _this.state = {//    selectedTab: tabs[0],
-    };
+    _this.state = {};
     tabs = props.tabs || defaultTabs;
     return _this;
   }
@@ -211,6 +209,19 @@ function (_Component) {
       }
     }
   }, {
+    key: "resultText",
+    value: function resultText() {
+      if (this.props.showResultText || this.props.showResultCron) {
+        return React.createElement("div", null, React.createElement("hr", {
+          className: "my-4"
+        }), React.createElement(Alert, {
+          color: "success"
+        }, this.props.showResultText && React.createElement("p", null, this.getVal()), React.createElement("hr", null), this.props.showResultCron && React.createElement("p", {
+          className: "mb-0"
+        }, this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ','))));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement("div", null, this.props.style && React.createElement("style", null, this.props.style), React.createElement(Jumbotron, {
@@ -222,13 +233,7 @@ function (_Component) {
         key: "cont"
       }, React.createElement(CardBody, {
         key: "contBody"
-      }, this.getComponent(this.state.selectedTab), React.createElement("hr", {
-        className: "my-4"
-      }), React.createElement(Alert, {
-        color: "success"
-      }, this.props.showResultText && React.createElement("p", null, this.getVal()), React.createElement("hr", null), this.props.showResultText && React.createElement("p", {
-        className: "mb-0"
-      }, this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ',')))))));
+      }, this.getComponent(this.state.selectedTab), this.resultText()))));
     }
   }]);
 
