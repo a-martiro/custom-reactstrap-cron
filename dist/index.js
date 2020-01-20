@@ -13,7 +13,7 @@ import Weekly from './weekly';
 import Monthly from './monthly';
 import Yearly from './yearly';
 import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap';
-var defaultTabs = ['Now', 'Monthly', 'Hourly', 'Daily', 'Weekly', 'Monthly']; //,'Yearly'
+var defaultTabs = ['Now', 'Minutes', 'Hourly', 'Daily', 'Weekly', 'Monthly']; //,'Yearly'
 
 var date = new Date();
 var defaultTabsVal = {
