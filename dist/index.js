@@ -130,7 +130,7 @@ function (_Component) {
     key: "getVal",
     value: function getVal() {
       var val = cronstrue.toString(this.state.value.toString().replace(/,/g, ' ').replace(/!/g, ','), {
-        locale: "es"
+        locale: this.props.locale || 'en'
       });
 
       if (val.search('undefined') === -1) {
