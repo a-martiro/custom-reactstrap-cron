@@ -88,13 +88,13 @@ function (_Component) {
         },
         checked: this.state.every ? true : false,
         name: "HourlyRadio"
-      }), ' ', "Cada \xA0", React.createElement("input", {
+      }), ' ', "Every \xA0", React.createElement("input", {
         className: "form-control",
         disabled: this.state.every ? false : true,
         type: "Number",
         onChange: this.onHourChange,
         value: this.state.value[2].split('/')[1] ? this.state.value[2].split('/')[1] : ''
-      }), "\xA0 Hora(s)"))), React.createElement("hr", null), React.createElement(Form, {
+      }), "\xA0 Hour(s)"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
         className: "mr-sm-4 ",
@@ -114,7 +114,7 @@ function (_Component) {
         },
         checked: this.state.every ? false : true,
         name: "HourlyRadio"
-      }), ' ', "Hora de inicio"), React.createElement(Input, {
+      }), ' ', "Begin at"), React.createElement(Input, {
         type: "select",
         name: "hours",
         disabled: this.state.every ? true : false,

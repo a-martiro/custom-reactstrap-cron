@@ -84,28 +84,28 @@ function (_Component) {
       }, React.createElement(CustomInput, {
         id: "MON",
         type: "switch",
-        label: "Lunes",
+        label: "Monday",
         value: "MON",
         onClick: this.onCheck,
         defaultChecked: this.state.value[5].search('MON') !== -1 ? true : false
       }), React.createElement(CustomInput, {
         id: "WED",
         type: "switch",
-        label: "Mi\xE9rcoles",
+        label: "Wednesday",
         value: "WED",
         onClick: this.onCheck,
         defaultChecked: this.state.value[5].search('WED') !== -1 ? true : false
       }), React.createElement(CustomInput, {
         id: "FRI",
         type: "switch",
-        label: "Viernes",
+        label: "Friday",
         value: "FRI",
         onClick: this.onCheck,
         defaultChecked: this.state.value[5].search('FRI') !== -1 ? true : false
       }), React.createElement(CustomInput, {
         id: "SUN",
         type: "switch",
-        label: "Domingo",
+        label: "Sunday",
         value: "SUN",
         onClick: this.onCheck,
         defaultChecked: this.state.value[5].search('SUN') !== -1 ? true : false
@@ -116,21 +116,21 @@ function (_Component) {
       }, React.createElement(CustomInput, {
         id: "TUE",
         type: "switch",
-        label: "Martes",
+        label: "Tuesday",
         value: "TUE",
         onClick: this.onCheck,
         defaultChecked: this.state.value[5].search('TUE') !== -1 ? true : false
       }), React.createElement(CustomInput, {
         id: "THU",
         type: "switch",
-        label: "Jueves",
+        label: "Thursday",
         value: "THU",
         onClick: this.onCheck,
         defaultChecked: this.state.value[5].search('THU') !== -1 ? true : false
       }), React.createElement(CustomInput, {
         id: "SAT",
         type: "switch",
-        label: "S\xE1bado",
+        label: "Saturday",
         value: "SAT",
         onClick: this.onCheck,
         defaultChecked: this.state.value[5].search('SAT') !== -1 ? true : false
@@ -140,7 +140,7 @@ function (_Component) {
         className: "mr-sm-4 "
       }, React.createElement(Label, {
         className: "mr-sm-2"
-      }, "Hora de inicio"), React.createElement(Input, {
+      }, "Begin at"), React.createElement(Input, {
         type: "select",
         name: "hours",
         onChange: this.onAtHourChange,

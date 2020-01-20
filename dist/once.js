@@ -79,7 +79,7 @@ function (_Component) {
     value: function render() {
       this.state.value = this.props.value; //
 
-      return React.createElement(Card, null, React.createElement(CardBody, null, "Fecha: \xA0", React.createElement(DatePicker, {
+      return React.createElement(Card, null, React.createElement(CardBody, null, "Daily: \xA0", React.createElement(DatePicker, {
         selected: this.state.startDate,
         onChange: this.onDayChange,
         minDate: new Date(),
@@ -91,7 +91,7 @@ function (_Component) {
       }, React.createElement(Label, {
         for: "exampleEmail",
         className: "mr-sm-2"
-      }, "Hora de inicio"), React.createElement(Input, {
+      }, "Begin at"), React.createElement(Input, {
         type: "select",
         name: "hours",
         onChange: this.onAtHourChange,

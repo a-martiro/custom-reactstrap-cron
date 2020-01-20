@@ -93,13 +93,13 @@ function (_Component) {
         },
         name: "DailyRadio",
         checked: this.state.every ? true : false
-      }), ' ', "Cada \xA0", React.createElement("input", {
+      }), ' ', "Every \xA0", React.createElement("input", {
         className: "form-control",
         disabled: this.state.every ? false : true,
         type: "Number",
         onChange: this.onDayChange,
         value: this.state.value[3].split('/')[1] ? this.state.value[3].split('/')[1] : ''
-      }), "\xA0 D\xEDa(s)"))), React.createElement("hr", null), React.createElement(Form, {
+      }), "\xA0 Day(s)"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
         check: true
@@ -118,14 +118,14 @@ function (_Component) {
           _this2.props.onChange(['0', _this2.state.value[1], _this2.state.value[2], '?', '*', 'MON-FRI', '*']);
         },
         checked: this.state.every ? false : true
-      }), ' ', "Todos los d\xEDas de la semana"))), React.createElement("hr", null), React.createElement(Form, {
+      }), ' ', "Every weekday"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
         className: "mr-sm-4 "
       }, React.createElement(Label, {
         for: "exampleEmail",
         className: "mr-sm-2"
-      }, "Hora de inicio"), React.createElement(Input, {
+      }, "Begin at"), React.createElement(Input, {
         type: "select",
         name: "hours",
         onChange: this.onAtHourChange,

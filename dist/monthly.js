@@ -110,13 +110,13 @@ function (_Component) {
         value: "1",
         name: "MonthlyRadio",
         checked: this.state.every === "1" ? true : false
-      }), ' ', "D\xEDa \xA0", React.createElement("input", {
+      }), ' ', "Day \xA0", React.createElement("input", {
         className: "form-control",
         type: "Number",
         readOnly: this.state.every !== "1",
         value: this.state.value[3],
         onChange: this.onDayChange
-      }), "\xA0 de cada mes"))), React.createElement("hr", null), React.createElement(Form, {
+      }), "\xA0 of the month"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
         check: true
@@ -135,7 +135,7 @@ function (_Component) {
         value: "2",
         name: "DailyRadio",
         checked: this.state.every === "2" ? true : false
-      }), ' ', "\xDAltimo d\xEDa de cada mes."))), React.createElement("hr", null), React.createElement(Form, {
+      }), ' ', "Last day of the month"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
         check: true
@@ -151,7 +151,7 @@ function (_Component) {
 
           _this2.props.onChange(['0', _this2.state.value[1] === '*' ? '0' : _this2.state.value[1], _this2.state.value[2] === '*' ? '0' : _this2.state.value[2], 'LW', '*', '?', '*']);
         }
-      }, _defineProperty(_React$createElement, "type", "radio"), _defineProperty(_React$createElement, "value", "3"), _defineProperty(_React$createElement, "name", "DailyRadio"), _defineProperty(_React$createElement, "checked", this.state.every === "3" ? true : false), _React$createElement)), ' ', "El \xFAltimo d\xEDa de la semana de cada mes."))), React.createElement("hr", null), React.createElement(Form, {
+      }, _defineProperty(_React$createElement, "type", "radio"), _defineProperty(_React$createElement, "value", "3"), _defineProperty(_React$createElement, "name", "DailyRadio"), _defineProperty(_React$createElement, "checked", this.state.every === "3" ? true : false), _React$createElement)), ' ', "Last weekday of the month"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
         check: true
@@ -176,14 +176,14 @@ function (_Component) {
         readOnly: this.state.every !== "4",
         value: this.state.value[3].split('-')[1],
         onChange: this.onLastDayChange
-      }), "\xA0 D\xEDa(s) antes de fin de mes"))), React.createElement("hr", null), React.createElement(Form, {
+      }), "\xA0 day(s) before the end of the month"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
         className: "mr-sm-4 "
       }, React.createElement(Label, {
         for: "exampleEmail",
         className: "mr-sm-2"
-      }, "Hora de inicio"), React.createElement(Input, {
+      }, "Begin at"), React.createElement(Input, {
         type: "select",
         name: "hours",
         onChange: this.onAtHourChange,

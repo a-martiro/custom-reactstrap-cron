@@ -42,14 +42,14 @@ function (_Component) {
       this.state.value = this.props.value;
       return React.createElement(Card, null, React.createElement(CardBody, null, React.createElement(Form, {
         inline: true
-      }, React.createElement(FormGroup, null, React.createElement(Label, null, "Cada \xA0", React.createElement("input", {
+      }, React.createElement(FormGroup, null, React.createElement(Label, null, "Every \xA0", React.createElement("input", {
         className: "form-control",
         type: "Number",
         onChange: this.onChange.bind(this),
         value: this.state.value[1].split('/')[1],
         min: 1,
         max: 60
-      }), "\xA0 Minuto(s)")))));
+      }), "\xA0 Minute(s)")))));
     }
   }]);
 

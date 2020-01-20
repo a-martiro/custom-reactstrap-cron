@@ -13,17 +13,17 @@ import Weekly from './weekly';
 import Monthly from './monthly';
 import Yearly from './yearly';
 import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap';
-var defaultTabs = ['Una vez', 'Minutos', 'Cada hora', 'Diario', 'Semanal', 'Mensual']; //,'Yearly'
+var defaultTabs = ['Now', 'Monthly', 'Hourly', 'Daily', 'Weekly', 'Monthly']; //,'Yearly'
 
 var date = new Date();
 var defaultTabsVal = {
-  'Una vez': [//Now
+  'Now': [//Now
   '0', '0', (date.getHours() < 23 ? date.getHours() + 1 : 23).toString(), date.getDate().toString(), (date.getMonth() + 1).toString(), '?', date.getFullYear().toString()],
-  'Minutos': ['0', '0/1', '*', '*', '*', '?', '*'],
-  'Cada hora': ['0', '0', '0/1', '*', '*', '?', '*'],
-  'Diario': ['0', '0', '00', '1/1', '*', '?', '*'],
-  'Semanal': ['0', '0', '00', '?', '*', '*', '*'],
-  'Mensual': ['0', '0', '00', '1', '1/1', '?', '*']
+  'Minutes': ['0', '0/1', '*', '*', '*', '?', '*'],
+  'Hourly': ['0', '0', '0/1', '*', '*', '?', '*'],
+  'Daily': ['0', '0', '00', '1/1', '*', '?', '*'],
+  'Weekly': ['0', '0', '00', '?', '*', '*', '*'],
+  'Monthly': ['0', '0', '00', '1', '1/1', '?', '*']
 };
 var tabs = [];
 
