@@ -162,6 +162,7 @@ function (_Component) {
 
       for (var i = 0; i < 24; i = i + leap) {
         hours.push(React.createElement("option", {
+          key: i,
           id: i,
           value: i < 10 ? "0".concat(i) : i
         }, i < 10 ? "0".concat(i) : i));
@@ -177,6 +178,7 @@ function (_Component) {
 
       for (var i = 0; i < 60; i = i + leap) {
         minutes.push(React.createElement("option", {
+          key: i,
           id: i,
           value: i < 10 ? "0".concat(i) : i
         }, i < 10 ? "0".concat(i) : i));

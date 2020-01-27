@@ -6,6 +6,7 @@ import _inherits from "@babel/runtime/helpers/esm/inherits";
 import React, { Component } from 'react';
 import cronstrue from 'cronstrue/i18n';
 import Once from './once';
+import Seconds from './seconds';
 import Minutes from './minutes';
 import Daily from './daily';
 import Hourly from './hourly';
@@ -13,12 +14,13 @@ import Weekly from './weekly';
 import Monthly from './monthly';
 import Yearly from './yearly';
 import { Card, CardBody, Nav, NavItem, NavLink, Jumbotron, Alert } from 'reactstrap';
-var defaultTabs = ['Now', 'Minutes', 'Hourly', 'Daily', 'Weekly', 'Monthly']; //,'Yearly'
+var defaultTabs = ['Now', 'Seconds', 'Minutes', 'Hourly', 'Daily', 'Weekly', 'Monthly']; //,'Yearly'
 
 var date = new Date();
 var defaultTabsVal = {
   'Now': [//Now
   '0', '0', (date.getHours() < 23 ? date.getHours() + 1 : 23).toString(), date.getDate().toString(), (date.getMonth() + 1).toString(), '?', date.getFullYear().toString()],
+  'Seconds': ['0/1', '*', '*', '*', '*', '?', '*'],
   'Minutes': ['0', '0/1', '*', '*', '*', '?', '*'],
   'Hourly': ['0', '0', '0/1', '*', '*', '?', '*'],
   'Daily': ['0', '0', '00', '1/1', '*', '?', '*'],
@@ -59,15 +61,15 @@ function (_Component) {
       if (val[6] !== '*') {
         this.state.selectedTab = defaultTabs[0];
       } else if (val[1].search('/') !== -1 && val[2] == '*' && val[3] == '1/1') {
-        this.state.selectedTab = defaultTabs[1];
-      } else if (val[2].search('/') !== -1) {
         this.state.selectedTab = defaultTabs[2];
-      } else if (val[3].search('/') !== -1 || val[5] == 'MON-FRI') {
+      } else if (val[2].search('/') !== -1) {
         this.state.selectedTab = defaultTabs[3];
-      } else if (val[3] === '?') {
+      } else if (val[3].search('/') !== -1 || val[5] == 'MON-FRI') {
         this.state.selectedTab = defaultTabs[4];
-      } else if (val[3].startsWith('L') || val[5] === '1/1') {
+      } else if (val[3] === '?') {
         this.state.selectedTab = defaultTabs[5];
+      } else if (val[3].startsWith('L') || val[5] === '1/1') {
+        this.state.selectedTab = defaultTabs[6];
       } else {
         this.state.selectedTab = tabs[0];
       }
@@ -152,14 +154,14 @@ function (_Component) {
             onChange: this.onValueChange.bind(this)
           });
 
-        case defaultTabs[1]:
+        case defaultTabs[2]:
           return React.createElement(Minutes, {
             key: "nav-".concat(tab),
             value: this.state.value,
             onChange: this.onValueChange.bind(this)
           });
 
-        case defaultTabs[2]:
+        case defaultTabs[3]:
           return React.createElement(Hourly, {
             key: "nav-".concat(tab),
             value: this.state.value,
@@ -168,7 +170,7 @@ function (_Component) {
             onChange: this.onValueChange.bind(this)
           });
 
-        case defaultTabs[3]:
+        case defaultTabs[4]:
           return React.createElement(Daily, {
             key: "nav-".concat(tab),
             value: this.state.value,
@@ -177,7 +179,7 @@ function (_Component) {
             onChange: this.onValueChange.bind(this)
           });
 
-        case defaultTabs[4]:
+        case defaultTabs[5]:
           return React.createElement(Weekly, {
             key: "nav-".concat(tab),
             value: this.state.value,
@@ -186,7 +188,7 @@ function (_Component) {
             onChange: this.onValueChange.bind(this)
           });
 
-        case defaultTabs[5]:
+        case defaultTabs[6]:
           return React.createElement(Monthly, {
             key: "nav-".concat(tab),
             value: this.state.value,
@@ -195,7 +197,7 @@ function (_Component) {
             onChange: this.onValueChange.bind(this)
           });
 
-        case defaultTabs[6]:
+        case defaultTabs[7]:
           return React.createElement(Yearly, {
             key: "nav-".concat(tab),
             value: this.state.value,
