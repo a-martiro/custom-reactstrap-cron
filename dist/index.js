@@ -60,6 +60,8 @@ function (_Component) {
 
       if (val[6] !== '*') {
         this.state.selectedTab = defaultTabs[0];
+      } else if (val[0] !== '0') {
+        this.state.selectedTab = defaultTabs[1];
       } else if (val[1].search('/') !== -1 && val[2] == '*' && val[3] == '1/1') {
         this.state.selectedTab = defaultTabs[2];
       } else if (val[2].search('/') !== -1) {
@@ -147,6 +149,15 @@ function (_Component) {
       switch (tab) {
         case defaultTabs[0]:
           return React.createElement(Once, {
+            key: "nav-".concat(tab),
+            value: this.state.value,
+            hours: this.props.hours,
+            minutes: this.props.minutes,
+            onChange: this.onValueChange.bind(this)
+          });
+
+        case defaultTabs[1]:
+          return React.createElement(Seconds, {
             key: "nav-".concat(tab),
             value: this.state.value,
             hours: this.props.hours,
