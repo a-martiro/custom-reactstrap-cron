@@ -96,8 +96,7 @@ export default class CustomCron extends Component {
         let newVal = ''
         newVal = val.toString().replace(/,/g,' ')
         newVal = newVal.replace(/!/g, ',')
-        console.log(newVal);
-        this.props.onChange(newVal) 
+        this.props.onChange(newVal)
     }
 
     getVal() {

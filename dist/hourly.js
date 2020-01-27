@@ -87,7 +87,14 @@ function (_Component) {
           _this2.props.onChange(['0', '0', '0/1', '*', '*', '?', '*']);
         },
         checked: this.state.every ? true : false,
-        name: "HourlyRadio"
+        name: "HourlyRadio",
+        onChange: function onClick(e) {
+          _this2.setState({
+            every: true
+          });
+
+          _this2.props.onChange(['0', '0', '0/1', '*', '*', '?', '*']);
+        },
       }), ' ', "Every \xA0", React.createElement("input", {
         className: "form-control",
         disabled: this.state.every ? false : true,
@@ -113,7 +120,14 @@ function (_Component) {
           _this2.props.onChange();
         },
         checked: this.state.every ? false : true,
-        name: "HourlyRadio"
+        name: "HourlyRadio",
+        onChange: function onClick(e) {
+        _this2.setState({
+          every: false
+        });
+
+        _this2.props.onChange();
+      },
       }), ' ', "Begin at"), React.createElement(Input, {
         type: "select",
         name: "hours",

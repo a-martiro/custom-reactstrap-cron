@@ -92,7 +92,14 @@ function (_Component) {
           _this2.props.onChange();
         },
         name: "DailyRadio",
-        checked: this.state.every ? true : false
+        checked: this.state.every ? true : false,
+        onChange: function onClick(e) {
+          _this2.setState({
+            every: true
+          });
+
+          _this2.props.onChange();
+        },
       }), ' ', "Every \xA0", React.createElement("input", {
         className: "form-control",
         disabled: this.state.every ? false : true,
@@ -117,7 +124,14 @@ function (_Component) {
 
           _this2.props.onChange(['0', _this2.state.value[1], _this2.state.value[2], '?', '*', 'MON-FRI', '*']);
         },
-        checked: this.state.every ? false : true
+        checked: this.state.every ? false : true,
+        onChange: function onClick(e) {
+          _this2.setState({
+            every: false
+          });
+
+          _this2.props.onChange(['0', _this2.state.value[1], _this2.state.value[2], '?', '*', 'MON-FRI', '*']);
+        },
       }), ' ', "Every weekday"))), React.createElement("hr", null), React.createElement(Form, {
         inline: true
       }, React.createElement(FormGroup, {
